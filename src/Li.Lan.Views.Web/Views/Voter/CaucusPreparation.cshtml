@@ -1,0 +1,162 @@
+﻿@model Li.Lan.Views.Web.Models.CaucusPreparationViewModel
+@{
+    ViewBag.Title = "Caucus Preparation";
+}
+
+<h4>Caucus Preparation</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary()
+    
+    @Html.HiddenFor(x => x.ElectionId)
+    @Html.HiddenFor(x => x.VoterId)
+    <br />
+    
+    if (!String.IsNullOrWhiteSpace(ViewBag.Message))
+    {
+    <div class="alert">
+        @ViewBag.Message
+    </div>
+    }
+    
+    <h5>General Voter Information</h5>
+    <table>
+        <tr>
+            <td class="tdlabel">State Voter Id:</td>
+            <td>@Model.VoterEditViewModel.StateVoterId</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">First Name:</td>
+            <td>@Model.VoterEditViewModel.FirstName</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">Last Name:</td>
+            <td>@Model.VoterEditViewModel.LastName</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">Phone Number:</td>
+            <td>@Model.VoterEditViewModel.PhoneNumber</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">Address:</td>
+            <td>@Model.VoterEditViewModel.AddressLine1
+                <br />
+                @if (!String.IsNullOrWhiteSpace(Model.VoterEditViewModel.AddressLine2))
+                {
+                    @Model.VoterEditViewModel.AddressLine2
+                    <br />
+                }
+                @Model.VoterEditViewModel.City, @Model.VoterEditViewModel.StateCode @Model.VoterEditViewModel.ZipCode
+            </td>
+        </tr>
+    </table>
+    <br />
+    
+    <h5>Phone Questions</h5>
+    @Html.LabelFor(x => x.CallDispositionId, "Call Disposition:")
+    @Html.DropDownListFor(x => x.CallDispositionId, Model.AllCallDispositionIds)
+    <div>
+        @Html.EditorFor(x => x.IsAttending) <span style="display: inline-block; vertical-align: middle; padding-top: 5px; padding-left: 10px;">Are you planning to attend the Iowa Caucus on, Tuesday, January 21st?</span>
+    </div>
+    <div>
+        @Html.EditorFor(x => x.IsDelegate) <span style="display: inline-block; vertical-align: middle; padding-top: 5px; padding-left: 10px;">Would you volunteer to run as a Delegate at the Caucus?</span>
+    </div>
+    <div>
+        @Html.EditorFor(x => x.IsCentralCommittee) <span style="display: inline-block; vertical-align: middle; padding-top: 5px; padding-left: 10px;">Would you volunteer to run for your Country Central Committee?</span>
+    </div>
+    <div>
+        @Html.EditorFor(x => x.IsVolunteer) <span style="display: inline-block; vertical-align: middle; padding-top: 5px; padding-left: 10px;">Would you volunteer to help Liberty Iowa reach more supporters in your county?</span>
+    </div>
+
+    <br />
+    @Html.LabelFor(x => x.IowaPrimary2014CandidateId, "2014 Iowa Senate Candidate Preference:")
+    @Html.DropDownListFor(x => x.IowaPrimary2014CandidateId, Model.All2014IowaPrimarySenateCandidates)
+    
+    @Html.LabelFor(x => x.IowaPrimary2014CandidateId, "2016 POTUS Candidate Preference:")
+    @Html.DropDownListFor(x => x.IowaCaucus2016CandidateId, Model.All2016IowaCaucusPresidentCandidates)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.Note, "Other notes from call:")
+    @Html.TextAreaFor(x => x.Note, new { style = "width: 240px; height: 80px;", maxlength = "1000" })
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Save" />
+    <br />
+    <br />
+    <h5>Update Voter Information</h5>
+    @Html.LabelFor(x => x.VoterEditViewModel.NickName, "Nickname:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.NickName)
+
+    @Html.LabelFor(x => x.VoterEditViewModel.Email, "Email:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.Email)
+    <br />
+    
+    <h5>New Phone Number</h5>
+    
+    @Html.LabelFor(x => x.VoterEditViewModel.PhoneNumber2, "Phone Number 2:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.PhoneNumber2)
+    
+    @Html.LabelFor(x => x.VoterEditViewModel.PhoneNumber2Type, "Phone Number 2 Type:")
+    @Html.DropDownListFor(x => x.VoterEditViewModel.PhoneNumber2Type, Model.VoterEditViewModel.PhoneNumberTypes)
+    <br />
+    <br />
+    
+    <h5>New Address</h5>
+    
+    @Html.LabelFor(x => x.VoterEditViewModel.NewAddressLine1, "New Address Line 1:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.NewAddressLine1)
+
+    @Html.LabelFor(x => x.VoterEditViewModel.NewAddressLine2, "New Address Line 2:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.NewAddressLine2)
+
+    @Html.LabelFor(x => x.VoterEditViewModel.NewCity, "New City:")
+    @Html.DropDownListFor(x => x.VoterEditViewModel.NewCity, Model.VoterEditViewModel.Cities, new { data_placeholder = "Choose City...", style = "display: none;" })
+    <br />
+    <br />
+    
+    @Html.LabelFor(x => x.VoterEditViewModel.NewStateCode, "New State:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.NewStateCode)
+
+    @Html.LabelFor(x => x.VoterEditViewModel.NewZipCode, "New Zip Code:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.NewZipCode)
+    
+    <h5>Social Media</h5>
+    @Html.LabelFor(x => x.VoterEditViewModel.TwitterId, "TwitterId:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.TwitterId)
+
+    @Html.LabelFor(x => x.VoterEditViewModel.FacebookId, "FacebookId:")
+    @Html.TextBoxFor(x => x.VoterEditViewModel.FacebookId)
+    
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Save" />
+}
+
+<br />
+<br />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            // select starts hidden so that it does not blink on, toggle visible
+            $("#VoterEditViewModel_NewCity").show();
+            $("#VoterEditViewModel_NewCity").chosen();
+
+            // copy DataAnnotation StringLength to input maxlength attribute
+            $("input[data-val-length-max]").each(function (index, element) {
+                var length = parseInt($(this).attr("data-val-length-max"));
+                $(this).prop("maxlength", length);
+            });
+
+        });
+
+
+    </script>
+}

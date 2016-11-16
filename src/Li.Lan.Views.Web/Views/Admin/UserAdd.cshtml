@@ -1,0 +1,40 @@
+﻿@model Li.Lan.Views.Web.Models.UserAddViewModel
+@{
+    ViewBag.Title = "Add New User";
+}
+
+<h3>Add New User</h3>
+
+@Html.ValidationSummary()
+
+<form method="post">
+
+    @Html.LabelFor(x => x.UserName)
+    @Html.TextBoxFor(x => x.UserName)
+    @Html.ValidationMessageFor(x => x.UserName)
+
+    @Html.LabelFor(x => x.Password)
+    @Html.TextBoxFor(x => x.Password)
+    @Html.ValidationMessageFor(x => x.Password)
+
+    @Html.LabelFor(x => x.Roles)
+    @Html.DropDownListFor(x => x.Roles, Model.AllRoles)
+    <br />
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Add New User" />
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $("UserName").focus();
+
+        });
+
+    </script>
+}

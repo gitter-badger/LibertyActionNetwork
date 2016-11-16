@@ -1,0 +1,24 @@
+﻿@model Li.Lan.Views.Web.Models.CreateNewUser
+@{
+    ViewBag.Title = "Create New User";
+}
+
+<h4>Create New User</h4>
+
+@if (!String.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    <p>@ViewBag.Message</p>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.UserName, "Email Address:")
+    @Html.TextBoxFor(x => x.UserName)
+    
+    @Html.LabelFor(x => x.Roles)
+    var roles = new SelectListItem[] { new SelectListItem() { Value = "", Text = "No Role" }, new SelectListItem() { Value = "Admin", Text = "Admin" } };
+    @Html.DropDownListFor(x => x.Roles, roles)
+    <br />
+    <br />
+    <input type="submit" value="Create New User" />
+}

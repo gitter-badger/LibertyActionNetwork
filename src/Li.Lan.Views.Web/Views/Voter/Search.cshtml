@@ -1,0 +1,156 @@
+﻿@model Li.Lan.Views.Web.Models.VoterSearchViewModel
+@{
+    ViewBag.Title = "Voter Search";
+}
+
+<h4>Voter Search</h4>
+
+@using (Html.BeginForm("Search", "Voter", FormMethod.Get))
+{
+    <input id="h" name="h" type="hidden" value="1" />
+    <label for="l">Last Name:</label>
+    <input id="l" name="l" type="text" class="span3" value="@Model.VoterSearchOptions.LastName" />
+    <label for="s">Street Name Contains:</label>
+    <input id="s" name="s" type="text" class="span3" value="@Model.VoterSearchOptions.StreetNameLike" />
+    <label for="p">Precinct(s):</label>
+    <div style="height: 30px;">
+        <select id="p" name="p" class="span3" data-placeholder="Choose Precincts..." style="display: none;" multiple="multiple">
+            @foreach (var p in Model.Precincts)
+            {
+                if (Model.VoterSearchOptions.PrecinctIds != null
+                    && Model.VoterSearchOptions.PrecinctIds.Contains(Convert.ToInt32(p.Value)))
+                {
+                <option selected="selected" value="@p.Value">@p.Text</option>
+                }
+                else
+                {
+                <option value="@p.Value">@p.Text</option>
+                }
+            }
+        </select>
+    </div>
+    <label for="i" style="padding-top: 10px;">Issue Tag(s):</label>
+    <div style="height: 30px;">
+        <select id="i" name="i" class="span3" data-placeholder="Choose Issue Tags..." style="display: none;" multiple="multiple">
+            @foreach (var p in Model.IssueTags)
+            {
+                if (Model.VoterSearchOptions.IssueTags != null
+                    && Model.VoterSearchOptions.IssueTags.Contains(Convert.ToInt16(p.Value)))
+                {
+                <option selected="selected" value="@p.Value">@p.Text</option>
+                }
+                else
+                {
+                <option value="@p.Value">@p.Text</option>
+                }
+            }
+        </select>
+    </div>
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Search" />
+}
+
+@if (Model.Results != null && Model.Results.Count() > 0)
+{
+    @Html.ActionLink("Add New Voter", "Add")
+    <br />
+    <br />
+    if (Model.VoterSearchOptions.TotalResultCount > Model.VoterSearchOptions.ResultLimit)
+    {
+    <div class="muted" style="padding: 10px;">Displaying first @Model.VoterSearchOptions.ResultLimit of @Model.VoterSearchOptions.TotalResultCount results.</div>
+    }
+    <table id="resultsTable" class="tablesorter">
+        <thead>
+            <tr>
+                <th>Id
+                </th>
+                <th style="max-width: 100px;">First Name
+                </th>
+                <th style="max-width: 100px;">Last Name
+                </th>
+                <th style="max-width: 200px;">Address
+                </th>
+                <th>City
+                </th>
+                <th>Zip
+                </th>
+                <th>Phone
+                </th>
+                <th>Precinct
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var voter in Model.Results)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(voter.VoterId.ToString(), "View", new { Id = voter.VoterId })
+                    </td>
+                    <td class="ellipsis" style="max-width: 100px;" title="@voter.FirstName" >@voter.FirstName
+                    </td>
+                    <td class="ellipsis" style="max-width: 100px;" title="@voter.LastName" >@voter.LastName
+                    </td>
+                    <td class="ellipsis" style="max-width: 200px;" title="@voter.AddressLine1" >@voter.AddressLine1
+                    </td>
+                    <td>@voter.City
+                    </td>
+                    <td>@voter.ZipCode
+                    </td>
+                    <td>@voter.PhoneNumber
+                    </td>
+                    <td>@voter.PrecinctDescription
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+            if (Model.VoterSearchOptions.TotalResultCount > Model.VoterSearchOptions.ResultLimit)
+            {
+    <div class="muted" style="padding: 10px;">Displaying first @Model.VoterSearchOptions.ResultLimit of @Model.VoterSearchOptions.TotalResultCount results.</div>
+            }
+    <br />
+    <br />
+    @Html.ActionLink("Add New Voter", "Add")
+}
+else
+{
+    <p>No results to display.</p>
+    <br />
+    @Html.ActionLink("Add New Voter", "Add")
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            // set default sort to LastName asc, FirstName asc
+            $("#resultsTable").tablesorter({
+                sortList: [[2, 0], [1, 0]]
+            });
+
+            //// set default sort to Title, asc
+            //// disable sorting on action column
+            ////$("#MyListsTable").tablesorter({
+            ////    sortList: [[0, 0]],
+            ////    headers: {
+            ////        3: { sorter: false },
+            ////        4: { sorter: false }
+            ////    }
+            ////});
+
+            // select starts hidden so that it does not blink on, toggle visible
+            $("#p").show();
+            $("#p").chosen();
+
+            $("#i").show();
+            $("#i").chosen();
+
+        });
+
+    </script>
+
+}

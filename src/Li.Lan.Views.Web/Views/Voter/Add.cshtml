@@ -1,0 +1,42 @@
+﻿@model Li.Lan.Views.Web.Models.VoterEditViewModel
+@{
+    ViewBag.Title = "Add Voter";
+}
+
+<h4>Add Voter</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary()
+    
+    @Html.Partial("_VoterEditPartial")
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Save" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            // select starts hidden so that it does not blink on, toggle visible
+            $("#Voter_City").toggle();
+            $("#Voter_City").chosen();
+
+            $("#Voter_PrecinctId").toggle();
+            $("#Voter_PrecinctId").chosen();
+
+            // copy DataAnnotation StringLength to input maxlength attribute
+            $("input[data-val-length-max]").each(function (index, element) {
+                var length = parseInt($(this).attr("data-val-length-max"));
+                $(this).prop("maxlength", length);
+            });
+        });
+
+    </script>
+}

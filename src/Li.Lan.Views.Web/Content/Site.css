@@ -1,0 +1,121 @@
+﻿
+.navbarspacer {
+    height: 60px;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+/* Table
+-------------------------------------------------- */
+table {
+    border: 0 solid #FFF;
+    border-spacing: 0;
+}
+
+th {
+    font-weight: normal;
+    color: #999999;
+    text-align: left;
+    padding: 4px;
+    padding-right: 20px;
+}
+
+td {
+    padding: 4px;
+    padding-right: 20px;
+    border: 0 solid #FFF;
+}
+
+.tdright {
+    text-align: right;
+}
+
+.tdlabel {
+    color: #999999;
+    vertical-align: top;
+}
+
+/* Sortable UL
+-------------------------------------------------- */
+.sortableUl {
+    list-style-type: none;
+}
+
+    .sortableUl li {
+        height: 50px;
+        width: 300px;
+    }
+
+.sortableLiDiv {
+    cursor: move;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-bottom: 8px;
+    border: 2px solid #e5e5e5;
+    background-color: #F3F3F3;
+}
+
+
+/* ASP.NET Validation
+-------------------------------------------------- */
+.validation-summary-errors {
+    border: solid 2px red;
+    padding: 10px;
+    background: #FFDDDD;
+}
+
+.validation-summary-errors ul li {
+    color: red;
+}
+
+.input-validation-error {
+    background-color: #FFDDDD !important;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -32px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+    height: 32px;
+}
+
+#footer {
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 979px) {
+    .navbarspacer {
+        height: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Sticky Footer - Lastly, apply responsive CSS fixes as necessary */
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="00a8c376-ac87-43c3-b592-d10cc112743a" ChangeDateTime="05/27/2013 22:14:18">
+    <Property Name="ElementName" Value="[dbo].[Voter].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Voter]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VoterId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b388cd92-7c89-4fe4-93ef-1103c4bac758" ChangeDateTime="05/27/2013 22:16:55">
+    <Property Name="ElementName" Value="[dbo].[State].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[State]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StateId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7fc5bb5e-a93c-461a-bfb7-f875d857a222" ChangeDateTime="05/29/2013 17:54:45">
+    <Property Name="ElementName" Value="[dbo].[GeographicalHierarchy].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GeographicalHierarchy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GeographicalHierarchyId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="52f8b596-bf30-4403-b9f4-3f94da05a75d" ChangeDateTime="05/29/2013 17:56:26">
+    <Property Name="ElementName" Value="[dbo].[Precinct].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Precinct]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="75f2221d-97cf-43d5-ac93-0ecce49ba80c" ChangeDateTime="05/29/2013 18:05:44">
+    <Property Name="ElementName" Value="[dbo].[PrecinctGeographicalHierarchy].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctGeographicalHierarchy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctGeographicalHierarchyId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bfead637-f19e-4ad7-bece-293e92364ea1" ChangeDateTime="05/29/2013 18:11:17">
+    <Property Name="ElementName" Value="[dbo].[Voter].[StateId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Voter]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StateCode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="182bc693-c463-4a30-8f83-8a231d8a84f0" ChangeDateTime="05/29/2013 18:18:42">
+    <Property Name="ElementName" Value="[dbo].[PrecinctGeographicalHierarchy].[PrecinctGeographicalHierarchyId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctGeographicalHierarchy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctTagPrecinctId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="40a859e2-c862-49d2-b7ec-232c2cb552d4" ChangeDateTime="05/29/2013 18:19:03">
+    <Property Name="ElementName" Value="[dbo].[PrecinctGeographicalHierarchy].[GeographicalHierarchyId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctGeographicalHierarchy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Precinct" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3e36a308-4d83-49f1-92ce-e12505c05d24" ChangeDateTime="05/29/2013 18:19:10">
+    <Property Name="ElementName" Value="[dbo].[PrecinctGeographicalHierarchy].[PrecinctTagPrecinctId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctGeographicalHierarchy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctPrecinctTagId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6965de70-5f04-40ff-851d-97b40ee059b4" ChangeDateTime="05/29/2013 18:19:16">
+    <Property Name="ElementName" Value="[dbo].[PrecinctGeographicalHierarchy].[Precinct]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctGeographicalHierarchy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctTagId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8aca2482-0201-4486-9b26-8228b339eb67" ChangeDateTime="05/29/2013 18:20:18">
+    <Property Name="ElementName" Value="[dbo].[PrecinctTag].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctTag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctTagid" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="775d7d06-2823-4227-8a69-be6654415a65" ChangeDateTime="05/29/2013 18:20:30">
+    <Property Name="ElementName" Value="[dbo].[PrecinctTag].[PrecinctTagid]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctTag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctTagId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f64f48d4-680e-4f5c-bb68-b43a04ea0064" ChangeDateTime="05/29/2013 18:20:45">
+    <Property Name="ElementName" Value="[dbo].[PrecinctTagType].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctTagType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctTagType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="43ecbee4-1953-41ad-b568-1e18758680c9" ChangeDateTime="05/29/2013 18:21:00">
+    <Property Name="ElementName" Value="[dbo].[PrecinctTagType].[PrecinctTagType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PrecinctTagType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PrecinctTagTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="56bd056d-a839-4a0f-9bcc-bfea4c595f6d" ChangeDateTime="05/29/2013 19:31:03">
+    <Property Name="ElementName" Value="[dbo].[CandidateTag].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CandidateTag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CandidateTagId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="39e50e34-d5a2-44ed-b43f-56887eca701a" ChangeDateTime="05/29/2013 19:31:43">
+    <Property Name="ElementName" Value="[dbo].[VoterCandidateTag].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VoterCandidateTag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VoterCandidateTagId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="119c13f0-2bb3-4cde-9aae-49852e7f4ad4" ChangeDateTime="07/01/2013 22:36:34">
+    <Property Name="ElementName" Value="[dbo].[PhoneNumberType].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhoneNumberType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PhoneNumberTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d493271d-bee3-4d49-a188-be9070954c2e" ChangeDateTime="07/12/2013 20:45:05">
+    <Property Name="ElementName" Value="[dbo].[Election].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Election]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ElectionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a9b42227-551f-4435-98a3-1cad7aaf5550" ChangeDateTime="07/12/2013 20:45:58">
+    <Property Name="ElementName" Value="[dbo].[Candidate].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Candidate]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CandidateId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="781c03d0-b150-43d1-9775-7e2fc0bc0976" ChangeDateTime="07/12/2013 20:50:01">
+    <Property Name="ElementName" Value="[dbo].[VoterCandidateTag].[VoterCandidateTagId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VoterCandidateTag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VoterCandidatePreferenceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f7cae439-081c-4a8f-ac66-72796c39fdbc" ChangeDateTime="07/12/2013 20:50:27">
+    <Property Name="ElementName" Value="[dbo].[VoterCandidateTag].[CandidateTagId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VoterCandidateTag]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CandidateId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a4412c9-3f94-44f4-aece-539b9006e2ec" ChangeDateTime="07/12/2013 23:04:06">
+    <Property Name="ElementName" Value="[dbo].[VoterCandidatePreference].[FromMigration]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VoterCandidatePreference]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FromMigrationFlag" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b078b550-064a-4e57-9cfc-aeb0749f707b" ChangeDateTime="07/24/2013 20:57:44">
+    <Property Name="ElementName" Value="[dbo].[VoterElection].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VoterElection]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VoterElectionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="af7b4852-c565-4b79-97a0-06b1f2e34b71" ChangeDateTime="11/13/2013 01:10:06">
+    <Property Name="ElementName" Value="[dbo].[Position].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Position]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PositionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f59389c2-f384-4512-ba1b-39fa66353f9e" ChangeDateTime="11/13/2013 01:16:33">
+    <Property Name="ElementName" Value="[dbo].[VoterNote].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VoterNote]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VoterNoteId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c66a0692-e717-4efd-91c1-2a982f458eac" ChangeDateTime="11/13/2013 01:29:51">
+    <Property Name="ElementName" Value="[dbo].[CaucusPreparation].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CaucusPreparation]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CaucusPreparationId" />
+  </Operation>
+</Operations>

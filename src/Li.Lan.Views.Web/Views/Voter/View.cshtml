@@ -1,0 +1,99 @@
+﻿@model Li.Lan.Views.Web.Models.VoterViewViewModel
+@{
+    ViewBag.Title = "View Voter";
+}
+
+<table>
+    <tr>
+        <td>
+            <h4>View Voter</h4>
+        </td>
+        <td>( @Html.ActionLink("edit voter", "Edit", new { Id = Model.VoterId }) )</td>
+    </tr>
+</table>
+
+@Html.HiddenFor(x => x.VoterId)
+@Html.HiddenFor(x => x.VoterGuid)
+@Html.HiddenFor(x => x.ActiveStatus)
+
+<table>
+    <tr>
+        <td class="tdlabel">State Voter Id:</td>
+        <td>@Model.StateVoterId</td>
+    </tr>
+    <tr>
+        <td class="tdlabel">First Name:</td>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <td class="tdlabel">Last Name:</td>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <td class="tdlabel">Phone Number:</td>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+    <tr>
+        <td class="tdlabel">Address:</td>
+        <td>@Model.AddressLine1
+            <br />
+            @if (!String.IsNullOrWhiteSpace(Model.AddressLine2))
+            {
+                @Model.AddressLine2
+                <br />
+            }
+            @Model.City, @Model.StateCode @Model.ZipCode
+        </td>
+    </tr>
+    <tr>
+        <td class="tdlabel">Precinct:</td>
+        <td>@Model.PrecinctDescription</td>
+    </tr>
+</table>
+<br />
+<br />
+Issue Tags:<br />
+<ul>
+    @foreach (var tag in Model.VoterIssueTagViewModels)
+    {
+        <li>@tag.IssueTagDescription</li>
+    }
+</ul>
+<br />
+<br />
+
+Candidate Preference Iowa Caucus 2012:<br />
+<ul>
+    @foreach (var perf in Model.VoterCandidatePreferencesIowaCaucus2012.OrderBy(x => x.Priority))
+    {
+        <li>@perf.Priority - @perf.CandidateName - @perf.SupportLevelDescription</li>
+    }
+</ul>
+<br />
+<br />
+
+Candidate Preference Iowa Caucus 2016:<br />
+<ul>
+    @foreach (var perf in Model.VoterCandidatePreferencesIowaCaucus2016.OrderBy(x => x.Priority))
+    {
+        <li>@perf.Priority - @perf.CandidateName - @perf.SupportLevelDescription</li>
+    }
+</ul>
+<br />
+<br />
+
+General Election History:<br />
+<ul>
+    @foreach (var vev in Model.VoterElectionViewModels.Where(x => x.ElectionTypeId == 1).OrderByDescending(x => x.ElectionDate))
+    {
+        <li>@vev.ElectionName</li>
+    }
+</ul>
+
+Primary Election History:<br />
+<ul>
+    @foreach (var vev in Model.VoterElectionViewModels.Where(x => x.ElectionTypeId == 2).OrderByDescending(x => x.ElectionDate))
+    {
+        <li>@vev.ElectionName</li>
+    }
+</ul>

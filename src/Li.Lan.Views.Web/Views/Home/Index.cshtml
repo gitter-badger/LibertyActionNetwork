@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<h3>Welcome to the Liberty Action Network!</h3>
+
+@if (Request.IsAuthenticated)
+{
+    @Html.ActionLink("Search the Voter Database", "Search", "Voter")<br />
+    <br />
+    @Html.ActionLink("Add a New Voter", "Add", "Voter")<br />
+    <br />
+    if (ViewBag.IsAdmin)
+    {
+        <br />
+        <h4>Admin Features</h4>
+        @Html.ActionLink("Create a New User", "CreateNewuser", "Account")<br />
+        <br />
+    }
+}
+else
+{
+    <p>Please Log in to access functionality.</p>
+}

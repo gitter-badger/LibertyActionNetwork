@@ -1,0 +1,28 @@
+﻿@model bool?
+
+@{
+    Dictionary<string, object> yesAttrs = new Dictionary<string, object>();
+    Dictionary<string, object> noAttrs = new Dictionary<string, object>();
+    Dictionary<string, object> nullAttrs = new Dictionary<string, object>();
+
+    yesAttrs.Add("id", ViewData.TemplateInfo.GetFullHtmlFieldId("") + "Yes");
+    noAttrs.Add("id", ViewData.TemplateInfo.GetFullHtmlFieldId("") + "No");
+    nullAttrs.Add("id", ViewData.TemplateInfo.GetFullHtmlFieldId("") + "NA");
+
+    if (Model.HasValue && Model.Value)
+    {
+        yesAttrs.Add("checked", "checked");
+    }
+    else if (Model.HasValue && !Model.Value)
+    {
+        noAttrs.Add("checked", "checked");
+    }
+    else
+    {
+        nullAttrs.Add("checked", "checked");
+    }
+}
+
+@Html.RadioButtonFor(x => x, "", nullAttrs)<label class="radio inline control-label" style="padding-left: 2px; padding-right: 5px;" for="@(ViewData.TemplateInfo.GetFullHtmlFieldId(""))NA">N/A</label>
+@Html.RadioButtonFor(x => x, "true", yesAttrs)<label class="radio inline control-label" style="padding-left: 2px; padding-right: 5px;" for="@(ViewData.TemplateInfo.GetFullHtmlFieldId(""))Yes">Yes</label>
+@Html.RadioButtonFor(x => x, "false", noAttrs)<label class="radio inline control-label" style="padding-left: 2px; padding-right: 5px;" for="@(ViewData.TemplateInfo.GetFullHtmlFieldId(""))No">No</label>

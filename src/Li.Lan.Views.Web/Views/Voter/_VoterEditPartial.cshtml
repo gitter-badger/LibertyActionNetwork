@@ -1,0 +1,47 @@
+﻿@model Li.Lan.Views.Web.Models.VoterEditViewModel
+
+@{
+    @Html.HiddenFor(x => x.VoterId)
+    @Html.HiddenFor(x => x.VoterGuid)
+    @Html.HiddenFor(x => x.ActiveStatus)
+    
+    @Html.LabelFor(x => x.StateVoterId, "State Voter Id:")
+    @Html.TextBoxFor(x => x.StateVoterId)
+
+    @Html.LabelFor(x => x.FirstName, "First Name:")
+    @Html.TextBoxFor(x => x.FirstName)
+
+    @Html.LabelFor(x => x.LastName, "Last Name:")
+    @Html.TextBoxFor(x => x.LastName)
+
+    @Html.LabelFor(x => x.AddressLine1, "Address Line 1:")
+    @Html.TextBoxFor(x => x.AddressLine1, new { style = "width: 300px;" })
+
+    @Html.LabelFor(x => x.AddressLine2, "Address Line 2:")
+    @Html.TextBoxFor(x => x.AddressLine2, new { style = "width: 300px;" })
+
+    @Html.LabelFor(x => x.City, "City:")
+    var cities = Model.Cities as IEnumerable<SelectListItem>;
+    @Html.DropDownListFor(x => x.City, cities, new { data_placeholder = "Choose City...", style = "width: 250px; display: none;" })
+    <br />
+    <br />
+    
+    @Html.LabelFor(x => x.StateCode, "State:")
+    @Html.TextBoxFor(x => x.StateCode, new { style = "width: 50px;" })
+
+    @Html.LabelFor(x => x.ZipCode, "Zip Code:")
+    @Html.TextBoxFor(x => x.ZipCode, new { style = "width: 100px;" })
+
+    @Html.LabelFor(x => x.PhoneNumber, "Phone Number:")
+    @Html.TextBoxFor(x => x.PhoneNumber, new { style = "width: 120px;" })
+
+    @Html.LabelFor(x => x.PrecinctId, "Precinct:")
+    @Html.DisplayTextFor(x => x.PrecinctId)
+    
+    @Html.LabelFor(x => x.TwitterId, "TwitterId:")
+    @Html.TextBoxFor(x => x.TwitterId)
+
+    @Html.LabelFor(x => x.FacebookId, "FacebookId:")
+    @Html.TextBoxFor(x => x.FacebookId)
+
+}

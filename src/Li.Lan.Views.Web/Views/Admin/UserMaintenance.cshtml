@@ -1,0 +1,58 @@
+﻿@model Li.Lan.Views.Web.Models.UserMaintenanceViewModel
+@{
+    ViewBag.Title = "User Maintenance";
+}
+
+<h3>User Maintenance</h3>
+
+@Html.ValidationSummary()
+
+<form method="post">
+
+    @Html.LabelFor(x => x.UserProfileSearchCriteriaViewModel.UserName, "User Name Contains:")
+    @Html.TextBoxFor(x => x.UserProfileSearchCriteriaViewModel.UserName)
+
+    @Html.LabelFor(x => x.UserProfileSearchCriteriaViewModel.RoleName, "Role:")
+    @Html.DropDownListFor(x => x.UserProfileSearchCriteriaViewModel.RoleName, Model.AllRoles)
+
+    @Html.LabelFor(x => x.UserProfileSearchCriteriaViewModel.ResultLimit, "Result Limit:")
+    @Html.TextBoxFor(x => x.UserProfileSearchCriteriaViewModel.ResultLimit)
+
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Search" />
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>UserId
+            </th>
+            <th>UserName
+            </th>
+            <th>Roles
+            </th>
+            <th>Regions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>
+                    @user.UserId
+                </td>
+                <td>
+                    @Html.ActionLink(user.UserName, "UserEdit", new { userName = user.UserName })
+                </td>
+                <td>
+                    @user.RoleName
+                </td>
+                <td>
+                    @String.Join(", ", user.PrecinctTags.Select(x => x.Description).ToList())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

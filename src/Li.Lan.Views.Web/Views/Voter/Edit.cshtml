@@ -1,0 +1,236 @@
+﻿@model Li.Lan.Views.Web.Models.VoterEditViewModel
+@{
+    ViewBag.Title = "Edit Voter";
+}
+
+<h4>Edit Voter</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary()
+    
+    @Html.HiddenFor(x => x.VoterId)
+    @Html.HiddenFor(x => x.VoterGuid)
+    @Html.HiddenFor(x => x.ActiveStatus)
+
+    <table>
+        <tr>
+            <td class="tdlabel">State Voter Id:</td>
+            <td>@Model.StateVoterId</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">First Name:</td>
+            <td>@Model.FirstName</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">Last Name:</td>
+            <td>@Model.LastName</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">Phone Number:</td>
+            <td>@Model.PhoneNumber</td>
+        </tr>
+        <tr>
+            <td class="tdlabel">Address:</td>
+            <td>@Model.AddressLine1
+                <br />
+                @if (!String.IsNullOrWhiteSpace(Model.AddressLine2))
+                {
+                    @Model.AddressLine2
+                    <br />
+                }
+                @Model.City, @Model.StateCode @Model.ZipCode
+            </td>
+        </tr>
+    </table>
+    <br />
+    
+    @Html.LabelFor(x => x.NickName, "Nickname:")
+    @Html.TextBoxFor(x => x.NickName)
+    
+    @Html.LabelFor(x => x.Email, "Email:")
+    @Html.TextBoxFor(x => x.Email)
+    <br />
+    
+    <h5>New Phone Number</h5>
+    
+    @Html.LabelFor(x => x.PhoneNumber2, "Phone Number 2:")
+    @Html.TextBoxFor(x => x.PhoneNumber2)
+    
+    @Html.LabelFor(x => x.PhoneNumber2Type, "Phone Number 2 Type:")
+    var phoneNumberTypes = Model.PhoneNumberTypes as IEnumerable<SelectListItem>;
+    @Html.DropDownListFor(x => x.PhoneNumber2Type, phoneNumberTypes, new { data_placeholder = "Choose Phone Number Type...", style = "width: 250px;" })
+    <br />
+    <br />
+    
+    <h5>New Address</h5>
+    
+    @Html.LabelFor(x => x.NewAddressLine1, "New Address Line 1:")
+    @Html.TextBoxFor(x => x.NewAddressLine1)
+
+    @Html.LabelFor(x => x.NewAddressLine2, "New Address Line 2:")
+    @Html.TextBoxFor(x => x.NewAddressLine2)
+
+    @Html.LabelFor(x => x.NewCity, "New City:")
+    
+    var cities = Model.Cities as IEnumerable<SelectListItem>;
+    @Html.DropDownListFor(x => x.NewCity, cities, new { data_placeholder = "Choose City...", style = "width: 250px; display: none;" })
+    <br />
+    <br />
+    
+    @Html.LabelFor(x => x.NewStateCode, "New State:")
+    @Html.TextBoxFor(x => x.NewStateCode)
+
+    @Html.LabelFor(x => x.NewZipCode, "New Zip Code:")
+    @Html.TextBoxFor(x => x.NewZipCode)
+    
+    <br />
+    <h5>Social Media</h5>
+    
+    @Html.LabelFor(x => x.TwitterId, "TwitterId:")
+    @Html.TextBoxFor(x => x.TwitterId)
+
+    @Html.LabelFor(x => x.FacebookId, "FacebookId:")
+    @Html.TextBoxFor(x => x.FacebookId)
+            
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" value="Save" />
+}
+
+<br />
+<h5>Issue Tags</h5>
+@{
+    var allIssueTags = Model.AllIssueTags as IEnumerable<SelectListItem>;
+}
+
+<form class="form-inline">
+    @Html.DropDownList("AllIssueTags", allIssueTags)
+    <input id="AddIssueTagButton" type="button" class="btn" value="Add Issue Tag" />
+</form>
+<ul id="IssueTagList" class="sortableUl" data-bind="foreach: VoterIssueTagViewModels">
+    <li>
+        <input type="hidden" data-bind="value: IssueTagId" />
+        <div class="sortableLiDiv">
+            <span data-bind="text: IssueTagDescription"></span>
+        </div>
+    </li>
+</ul>
+
+<input id="UpdateVoterIssueTagsButton" type="button" class="btn btn-primary" value="Update Issue Tags" />
+<span id="UpdateVoterIssueTagsStatus" style="padding: 4px;"></span>
+
+<br />
+<br />
+<form method="post" action="/Voter/Delete">
+    @Html.AntiForgeryToken()
+    <input id="voterId" name="voterId" type="hidden" value="@Model.VoterId" />
+    <input type="submit" class="btn" value="Delete Voter" onclick="return confirm('Are you sure you want to delete this Voter?');" />
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        var voterIssueTagViewModels = @Html.Json(Model.VoterIssueTagViewModels) ;
+
+        var voterId = @Model.VoterId ;
+
+        var viewModel = {};
+
+        $(function () {
+
+            // select starts hidden so that it does not blink on, toggle visible
+            $("#NewCity").toggle();
+            $("#NewCity").chosen();
+
+            // copy DataAnnotation StringLength to input maxlength attribute
+            $("input[data-val-length-max]").each(function (index, element) {
+                var length = parseInt($(this).attr("data-val-length-max"));
+                $(this).prop("maxlength", length);
+            });
+
+            var vm = {
+                VoterIssueTagViewModels: voterIssueTagViewModels
+            };
+
+            viewModel = ko.mapping.fromJS(vm);
+
+            ko.applyBindings(viewModel);
+
+            $("#IssueTagList").sortable();
+
+            $("#AddIssueTagButton").click(AddIssueTagButton_Click);
+
+            $("#UpdateVoterIssueTagsButton").click(UpdateVoterIssueTagsButton_Click);
+
+        });
+
+        function AddIssueTagButton_Click() {
+            
+            var issueTagId = $("#AllIssueTags").val();
+            var issueTagDescription = $("#AllIssueTags :selected").text();
+
+            // add to collection if it does not already exist
+            var issueTag = ko.utils.arrayFirst(viewModel.VoterIssueTagViewModels(), function(item) {
+                return item.IssueTagId() == issueTagId;
+            });
+
+            // if issueTag already in collection, do nothing
+            if (issueTag != null)
+                return;
+            
+            // add to local collection
+            viewModel.VoterIssueTagViewModels.push(ko.mapping.fromJS({ IssueTagId: issueTagId, IssueTagDescription: issueTagDescription }));
+            
+        }
+
+        function UpdateVoterIssueTagsButton_Click() {
+
+            var voterIssueTagViewModles = [];
+
+            var listItems = $("#IssueTagList li");
+
+            for (var i = 0; i < listItems.length; i++)
+            {
+                var listItem = listItems[i];
+
+                var issueTagId = $("input", listItem).val();
+
+                voterIssueTagViewModles.push({
+                    VoterId: voterId,
+                    IssueTagId: issueTagId,
+                    Priority: i + 1
+                });
+            }
+
+            var token = $("input[name=__RequestVerificationToken]").val();
+            // post to server
+            var postData = { "__RequestVerificationToken": token, vm: { VoterIssueTagViewModels: voterIssueTagViewModles } };
+            
+            var ajaxData = JSON.stringify(postData);
+
+            $("#UpdateVoterIssueTagsStatus").html("Saving...");
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json, charset=utf-8",
+                url: "/Voter/UpdateVoterIssueTags",
+                data: ajaxData
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+
+                var something = new Date()
+            })
+            .done(function(){
+                $("#UpdateVoterIssueTagsStatus").html("Save Complete");
+                $("#UpdateVoterIssueTagsStatus").effect("highlight", {}, 500);
+            });
+
+        }
+
+    </script>
+}

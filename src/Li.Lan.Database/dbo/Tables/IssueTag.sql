@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[IssueTag]
+(
+	[IssueTagId] SMALLINT NOT NULL PRIMARY KEY IDENTITY(1, 1), 
+    [Description] NVARCHAR(50) NOT NULL
+)
